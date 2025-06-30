@@ -26,11 +26,12 @@
     h1 {
         font-family: 'SnakeBusiness', Arial, Helvetica, sans-serif;
         font-size: 80px;
-        margin: 0 0 0 0px;
+        margin: 0 0px 0 0px;
         text-align: center;
         width: 100%;
         display: block;
     }
+
     #score-board {
     display: flex;
     flex-direction: row;
@@ -47,7 +48,7 @@
     border-radius: 5px;
     /*box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);*/
     padding: 0px;
-    margin: 0;
+    margin: 0 75px 0 0
 }
 
     #game-board {

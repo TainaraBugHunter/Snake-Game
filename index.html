@@ -11,43 +11,45 @@
     <link rel="manifest" href="/site.webmanifest">
 </head>
 <body>
-    <main>
-        <div id="side-panel">
-            <section id="controls" aria-label="Controles do Jogo">
-                <button id="start-button">Começar</button>
-                <button id="pause-button">Pausar</button>
-                <button id="reset-button">Reiniciar</button>
-                <button id="delete-high-score-button">Deletar Recorde</button>
-                <div id="sound-indicator" title="Som Ativo">🔊</div>
-            </section>
-            <div id="instructions">
-                <p>
-                    Use as setas para mover.<br>
-                    <b>Espaço</b>: Pausar/Continuar <br>
-                    <b>C</b>: Começar <br>
-                    <b>R</b>: Reiniciar <br>
-                    <b>D</b>: Deletar Recorde <br>
-                    <b>M</b>: Mutar música
-                </p>
-            </div>
+<main>
+    <div id="side-panel">
+        <section id="controls" aria-label="Controles do Jogo">
+            <button id="start-button">Começar</button>
+            <button id="pause-button">Pausar</button>
+            <button id="reset-button">Reiniciar</button>
+            <button id="delete-high-score-button">Deletar Recorde</button>
+            <div id="sound-indicator" title="Som Ativo">🔊</div>
+        </section>
+        <div id="instructions">
+            <p>
+                Use as setas para mover.<br>
+                <b>Espaço</b>: Pausar/Continuar <br>
+                <b>C</b>: Começar <br>
+                <b>R</b>: Reiniciar <br>
+                <b>D</b>: Deletar Recorde <br>
+                <b>M</b>: Mutar música
+            </p>
         </div>
-        <div id="game-container">
-            <h1>Snake Game</h1>
-            <section id="score-board" aria-label="Painel de Pontuação">
-                <div>Placar: <span id="score">0</span></div>
-                <div>Recorde: <span id="high-score">0</span></div>
-                <div>Fase: <span id="level">1</span></div>
-            </section>
-            <section id="game-board" aria-label="Área do Jogo"></section>
-            <div id="game-over-screen" style="display: none;">
-                <div>Game Over</div>
-                <button id="restart-button">Reiniciar</button>
-            </div>
+    </div>
+    <div id="game-container">
+        <div id="title">
+        <h1>Snake Game</h1>
+        <section id="score-board" aria-label="Painel de Pontuação">
+            <div>Placar: <span id="score">0</span></div>
+            <div>Recorde: <span id="high-score">0</span></div>
+            <div>Fase: <span id="level">1</span></div>
+        </section>
         </div>
-    </main>
-    <footer id="footer">
+        <section id="game-board" aria-label="Área do Jogo"></section>
+        <div id="game-over-screen" style="display: none;">
+            <div>Game Over</div>
+            <button id="restart-button">Reiniciar</button>
+        </div>
+    </div>
+</main>
+<footer id="footer">
     Desenvolvido por Tainara Martins &copy; 2025 
 </footer>
-    <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
