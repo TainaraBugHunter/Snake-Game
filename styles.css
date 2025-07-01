@@ -2,61 +2,105 @@
         font-family: SnakeBusiness;
         src: url(SnakeBusiness.ttf) format('truetype');
     }
-    @font-face {
+
+@font-face {
         font-family: Score ;
         src: url(SCOREBOARD.ttf) format('truetype');
     }
-    @font-face {
+
+@font-face {
         font-family: TypeMachine;
         src: url(Type\ Machine.ttf) format('truetype');
     }
-    body {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        min-height: 100vh; /* troque height por min-height */
-        margin: 0;
-        background-color: #f0f0f0;
-        background-image: url(fundo1.jpg);
-        background-size: contain;
-        font-family: Arial, sans-serif;
-        padding-bottom: 0px; /* Para não sobrepor conteúdo com o footer */
-    }
-    h1 {
-        font-family: 'SnakeBusiness', Arial, Helvetica, sans-serif;
-        font-size: 80px;
-        margin: 0 0px 0 0px;
-        text-align: center;
-        width: 100%;
-        display: block;
-    }
 
-    #score-board {
+/* Centraliza todo o conteúdo principal */
+body {
+    display: fixed;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    background-color: #f0f0f0;
+    background-image: url(fundo1.jpg);
+    background-size: contain;
+    font-family: Arial, sans-serif;
+    padding-bottom: 0px;
+}
+
+/* Centraliza o título */
+#title, h1 {
+    font-family: SnakeBusiness;
+    font-size: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;   /* Empilha o título acima do placar */
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin: 2px 0;
+}
+
+/* Espaço entre o título e o placar
+#title h1 {
+    margin-bottom: 2px; /* Espaço entre o título e o placar
+}*/
+
+/*h3 {
+    margin: 2px 0;   /* Diminui o espaço acima e abaixo de cada h6 
+    line-height: 1.1; /* Diminui o espaço interno entre as linhas 
+}
+h6 {
+    margin: 2px 0;   /* Diminui o espaço acima e abaixo de cada h6 
+    line-height: 1.1; /* Diminui o espaço interno entre as linhas 
+}*/
+
+/* Centraliza o placar */
+#score-board {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     gap: 32px;
-    margin: 0 0 0 0px;
+    margin: 0px;
     font-family: 'Score', Arial, Helvetica, sans-serif;
-    font-size: 30px;
+    font-size: 20px;
     color: #0c360c;
+    width: 100%;
+    text-align: center;
 }
-    #score-board div {
+
+/* Centraliza os botões abaixo do game board */
+#controls {
+    display: none !important;
+}
+
+/* Centraliza o footer */
+#footer {
+    width: 100vw;
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+    z-index: 100;
+    letter-spacing: 1px;
+    font-family: 'typeMachine', Arial, Helvetica, sans-serif;
+}
+
+#score-board div {
     /*background-color: #d4edda;*/
     border-radius: 5px;
     /*box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);*/
     padding: 0px;
-    margin: 0 75px 0 0
+    margin: 0px;
 }
 
-    #game-board {
+#game-board {
         position: relative;
         width: 400px;
         height: 400px;
         background: #000000;
-        margin: 0 0 0 22px;
+        margin: 0px;
         border: 2px solid rgba(74, 252, 3);
         overflow: hidden;
         box-shadow: 0 0 10px #000000;
@@ -70,68 +114,36 @@
         border-color: #0d3f03c2;
         /*border-bottom: 20px;*/
     }
-    .snake, .food {
+    
+.snake, .food {
         position: absolute;
         width: 20px;
         height: 20px;
-    }
-    .snake {
-        background: #26ff009d;
+}
+
+.snake {
+        background: #36da19;
         border-radius: 15px;
         /*box-shadow:
             0 0 1px 1px #37ff143d,
             0 0 1px 1px #37ff143d;*/
-    }
-    .snake-head {
-        background: #0c4d01c4;
+}
+ 
+.snake-head {
+        background: #3aeb1bc4;
         /*box-shadow:
             0 0 1px 1px #26ff0063,
             0 0 1px 1px #26ff0063;*/
         border-radius: 15px;
     }
-    .food {
+
+.food {
         background: #b40505;
-        /*box-shadow:
+        /*box-shadow:s
             0 0 1px 1px #ff000079,
             0 0 1px 1px #ff000079;*/
         border-radius: 50%;
     }
-    #controls {
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        grid-template-rows: repeat(2, auto);
-        gap: 8px;
-        align-items: center;
-        justify-items: center;
-        min-width: 0;
-        min-height: 0;
-        margin-top: 0;
-        margin-bottom: 0;
-    }
-
-#sound-indicator {
-    grid-column: 2 / 3;
-    grid-row: 2 / 3;
-    margin-top: 0;
-}
-
-    button {
-        font-family: 'TypeMachine';
-        font-size: 12px;
-        font-weight: 600;
-        color: #0c360c;
-        margin: 5px;
-        padding: 10px 20px;
-        background-color: rgb(5, 99, 5);
-        cursor: pointer;
-        border: none;
-        border-radius: 10px;
-        transition: background-color 0.3s;
-}
-button:hover {
-    background-color: #1baf07;
-}
 
 #game-over-screen {
     font-size: 30px;
@@ -156,15 +168,13 @@ button:hover {
 
 main {
     display: flex;
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center;     /* Alinha verticalmente */
-    gap: 16px;               /* Diminui o espaço entre o game board e o side panel */
-    flex: 1;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 24px;
     width: 100%;
     min-height: 80vh;
-    flex: 1;
-    width: 100%;
-    min-height: 80vh;
+    align-items: center;
 }
 
 #sound-indicator {
@@ -174,7 +184,14 @@ main {
     user-select: none;
 }
 
-#instructions {
+header{
+    font-family: 'TypeMachine', Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    color: #222;
+    width: 100%;
+    text-align: center;
+}
+/*#side-panel {
     font-family: 'TypeMachine', Arial, Helvetica, sans-serif;
     font-size: 12px;
     margin-top: 4px;
@@ -182,45 +199,12 @@ main {
     border: 1.5px solid #4caf50;
     border-radius: 8px;
     box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-    padding: 6px 8px;
+    padding: 0px;
     font-size: 0.85em;
     color: #222;
     text-align: center;
-    max-width: 200px;
-    margin-left: 0;
+    width: 200px;
+    align-self: center;
+    /*margin-left: 0;
     margin-right: 0;
-}
-
-#side-panel {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 12px;
-    min-width: 150px;
-    max-width: 200px;
-    padding: 10px 6px;
-    background: rgba(37, 99, 2, 0.562);
-    border-radius: 12px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
-    align-self: center; /* Garante que fique alinhado verticalmente com o game board */
-    margin: 110px 0 0 0 ;           /* Remove margens laterais desnecessárias */
-}
-
-section[aria-label="Área do Jogo"] {
-    margin-left: 0;
-}
-
-#footer {
-    width: 100vw;
-    color: #fff;
-    text-align: center;
-    font-size: 1em;
-    padding: 0px 0 0px 0;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    z-index: 100;
-    letter-spacing: 1px;
-    font-family: 'typeMachine', Arial, Helvetica, sans-serif;
-}
+}*/

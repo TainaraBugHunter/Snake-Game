@@ -18,12 +18,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const eatSound = new Audio('eat.mp3');
     const loseSound = new Audio('lose.mp3');
-    const gameOverSound = new Audio('gameover.mp3');
+    const gameOverSound = new Audio('lose.mp3');
 
     let isMuted = false;
 
     function updateSoundIndicator() {
-        soundIndicator.textContent = isMuted ? '🔇' : '🔊';
+        soundIndicator.textContent = isMuted ? 'Mutado' : '🔊';
         soundIndicator.title = isMuted ? 'Som Mutado' : 'Som Ativo';
     }
 
@@ -39,10 +39,10 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSoundIndicator();
     music.play();
 
-    const boardSize = 400;
+    const boardSize = 400; // Tamanho do tabuleiro restaurado para 400x400
     const squareSize = 20;
 
-    let snake = [{ x: 200, y: 200 }];
+    let snake = [{ x: 200, y: 200 }]; // Centralizado para 400x400
     let direction = { x: 0, y: 0 };
     let food = { x: 0, y: 0 };
     let gameInterval = null;
@@ -54,6 +54,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     highScoreElement.textContent = highScore;
 
+    const snakeColors = [
+        "#36da19", "#1e90ff", "#ff9800", "#e91e63", "#9c27b0",
+        "#ffd600", "#00bcd4", "#ff5722", "#4caf50", "#f44336"
+    ];
+
+    function getSnakeColor() {
+        return snakeColors[(level - 1) % snakeColors.length];
+    }
+
+    function darkenColor(hex, factor = 0.6) {
+        let r = parseInt(hex.substr(1, 2), 16);
+        let g = parseInt(hex.substr(3, 2), 16);
+        let b = parseInt(hex.substr(5, 2), 16);
+
+        r = Math.floor(r * factor);
+        g = Math.floor(g * factor);
+        b = Math.floor(b * factor);
+
+        return `rgb(${r}, ${g}, ${b})`;
+    }
+
     function createBoard() {
         board.innerHTML = '';
         snake.forEach((segment, index) => {
@@ -61,7 +82,13 @@ document.addEventListener('DOMContentLoaded', () => {
             snakeElement.style.left = `${segment.x}px`;
             snakeElement.style.top = `${segment.y}px`;
             snakeElement.classList.add('snake');
-            if (index === 0) snakeElement.classList.add('snake-head');
+            const bodyColor = getSnakeColor();
+            if (index === 0) {
+                snakeElement.classList.add('snake-head');
+                snakeElement.style.background = darkenColor(bodyColor, 0.6);
+            } else {
+                snakeElement.style.background = bodyColor;
+            }
             board.appendChild(snakeElement);
         });
 
@@ -116,6 +143,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 400);
 
         gameOverScreen.style.display = 'flex';
+        document.getElementById('controls').classList.add('hidden'); // Esconder controles ao terminar o jogo
     }
 
     function placeFood() {
@@ -143,10 +171,10 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateLevel() {
-        if (score > 0 && score % 20 === 0) { // Agora sobe de nível a cada 20 pontos
+        if (score > 0 && score % 20 === 0) {
             level++;
             levelElement.textContent = level;
-            speed = Math.max(60, speed - 10); // Diminui menos a velocidade a cada fase
+            speed = Math.max(60, speed - 10);
             clearInterval(gameInterval);
             gameInterval = setInterval(gameLoop, speed);
         }
@@ -158,11 +186,11 @@ document.addEventListener('DOMContentLoaded', () => {
         isPaused = false;
         pauseButton.textContent = 'Pausar';
 
-        snake = [{ x: 200, y: 200 }];
+        snake = [{ x: 200, y: 200 }]; // Centralizado para 400x400
         direction = { x: 0, y: 0 };
         score = 0;
         level = 1;
-        speed = 200;
+        speed = 250; // Valor inicial igual ao do início
 
         scoreElement.textContent = score;
         levelElement.textContent = level;
@@ -170,16 +198,16 @@ document.addEventListener('DOMContentLoaded', () => {
 
         placeFood();
         createBoard();
-    }
+     }
 
     function startGame() {
         if (!direction.x && !direction.y) {
-            direction = { x: squareSize, y: 0 }; // começa para a direita
+            direction = { x: squareSize, y: 0 };
         }
 
         if (!gameInterval) {
             gameInterval = setInterval(gameLoop, speed);
-            music.play(); // Inicia a música só quando o jogo começa
+            music.play();
         }
     }
 
@@ -192,6 +220,7 @@ document.addEventListener('DOMContentLoaded', () => {
             pauseButton.textContent = 'Voltar';
         }
         isPaused = !isPaused;
+        document.getElementById('controls').classList.toggle('hidden'); // Alternar visibilidade dos controles ao pausar o jogo
     }
 
     function deleteHighScore() {
@@ -216,22 +245,18 @@ document.addEventListener('DOMContentLoaded', () => {
     deleteHighScoreButton.addEventListener('click', deleteHighScore);
 
     document.addEventListener('keydown', (event) => {
-        changeDirection(event); // <-- Adicione esta linha!
+        changeDirection(event);
+        if (event.key === ' ' || event.key === 'Spacebar') pauseButton.click();
+        if (event.key === 'c' || event.key === 'C') startButton.click();
+        if (event.key === 'r' || event.key === 'R') resetButton.click();
+        if (event.key === 'd' || event.key === 'D') deleteHighScoreButton.click();
+        if (event.key === 'm' || event.key === 'M') soundIndicator.click();
+    });
 
-        if (event.key === ' ' || event.key === 'Spacebar') { // Espaço: Pausar/Continuar
-            pauseButton.click();
-        }
-        if (event.key === 'c' || event.key === 'C') { // C: Começar
-            startButton.click();
-        }
-        if (event.key === 'r' || event.key === 'R') { // R: Reiniciar
-            resetButton.click();
-        }
-        if (event.key === 'd' || event.key === 'D') { // D: Deletar Recorde
-            deleteHighScoreButton.click();
-        }
-        if (event.key === 'm' || event.key === 'M') { // M: Mutar som
-            soundIndicator.click();
+    document.addEventListener('keydown', function(event) {
+        // Impede o scroll da página com as setas e barra de espaço
+        if (["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight", " "].includes(event.key)) {
+            event.preventDefault();
         }
     });
 
