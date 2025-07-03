@@ -9,12 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const deleteHighScoreButton = document.getElementById('delete-high-score-button');
     const soundIndicator = document.getElementById('sound-indicator');
     const gameOverScreen = document.getElementById('game-over-screen');
-    const restartButton = document.getElementById('restart-button');
+    const restartButtonControls = document.getElementById('restart-button-controls');
+    const restartButtonGameOver = document.getElementById('restart-button-gameover');
 
     // Sons
     const music = new Audio('musica.mp3');
     music.loop = true;
-    music.volume = 0.5;
+    music.volume = 0.8;
 
     const eatSound = new Audio('eat.mp3');
     const loseSound = new Audio('lose.mp3');
@@ -234,7 +235,8 @@ document.addEventListener('DOMContentLoaded', () => {
         createBoard();
     }
 
-    restartButton.addEventListener('click', () => {
+    restartButtonControls.addEventListener('click', resetGame);
+    restartButtonGameOver.addEventListener('click', () => {
         gameOverScreen.style.display = 'none';
         resetGame();
     });

@@ -24,7 +24,7 @@ body {
     margin: 0;
     background-color: #f0f0f0;
     background-image: url(fundo1.jpg);
-    background-size: contain;
+    background-size: cover;
     font-family: Arial, sans-serif;
     padding-bottom: 0px;
 }
@@ -32,7 +32,7 @@ body {
 /* Centraliza o título */
 #title, h1 {
     font-family: SnakeBusiness;
-    font-size: 50px;
+    font-size: 60px;
     width: 100%;
     display: flex;
     flex-direction: column;   /* Empilha o título acima do placar */
@@ -41,20 +41,6 @@ body {
     text-align: center;
     margin: 2px 0;
 }
-
-/* Espaço entre o título e o placar
-#title h1 {
-    margin-bottom: 2px; /* Espaço entre o título e o placar
-}*/
-
-/*h3 {
-    margin: 2px 0;   /* Diminui o espaço acima e abaixo de cada h6 
-    line-height: 1.1; /* Diminui o espaço interno entre as linhas 
-}
-h6 {
-    margin: 2px 0;   /* Diminui o espaço acima e abaixo de cada h6 
-    line-height: 1.1; /* Diminui o espaço interno entre as linhas 
-}*/
 
 /* Centraliza o placar */
 #score-board {
@@ -81,16 +67,14 @@ h6 {
     width: 100vw;
     color: #fff;
     text-align: center;
-    font-size: 12px;
+    font-size: 15px;
     z-index: 100;
     letter-spacing: 1px;
     font-family: 'typeMachine', Arial, Helvetica, sans-serif;
 }
 
 #score-board div {
-    /*background-color: #d4edda;*/
     border-radius: 5px;
-    /*box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);*/
     padding: 0px;
     margin: 0px;
 }
@@ -101,7 +85,7 @@ h6 {
         height: 400px;
         background: #000000;
         margin: 0px;
-        border: 2px solid rgba(74, 252, 3);
+        border: 4px solid rgb(21, 70, 2);
         overflow: hidden;
         box-shadow: 0 0 10px #000000;
         background-image:
@@ -111,9 +95,7 @@ h6 {
         background-position: 0 0, 0 0, center;
         border-image: 5px;
         background-color: #000000; 
-        border-color: #0d3f03c2;
-        /*border-bottom: 20px;*/
-    }
+ }
     
 .snake, .food {
         position: absolute;
@@ -124,46 +106,35 @@ h6 {
 .snake {
         background: #36da19;
         border-radius: 15px;
-        /*box-shadow:
-            0 0 1px 1px #37ff143d,
-            0 0 1px 1px #37ff143d;*/
 }
  
 .snake-head {
         background: #3aeb1bc4;
-        /*box-shadow:
-            0 0 1px 1px #26ff0063,
-            0 0 1px 1px #26ff0063;*/
         border-radius: 15px;
-    }
+}
 
 .food {
         background: #b40505;
-        /*box-shadow:s
-            0 0 1px 1px #ff000079,
-            0 0 1px 1px #ff000079;*/
         border-radius: 50%;
-    }
+}
 
 #game-over-screen {
-    font-size: 30px;
-    color: #fff;
-    background: rgba(51, 165, 7, 0.8);
+    font-family: SnakeBusiness;
+    width: 350px;
     position: fixed;
     top: 50%;
     left: 50%;
-    width: 340px;
     transform: translate(-50%, -50%);
-    text-align: center;
-    z-index: 1000;
-    margin: 0;
-    padding: 24px 0;
     display: flex;
     flex-direction: column;
-    gap: 16px;
     align-items: center;
+    background: rgba(51, 165, 7, 0.8);
+    color: #0c3001;
+    font-size: 40px;
+    padding: 24px 0;
     border-radius: 16px;
-    box-shadow: 0 0 24px #39ff14a0;
+    box-shadow: 0 0 24px #000000a0;
+    z-index: 1000;
 }
 
 main {
@@ -186,25 +157,8 @@ main {
 
 header{
     font-family: 'TypeMachine', Arial, Helvetica, sans-serif;
-    font-size: 12px;
+    font-size: 15px;
     color: #222;
     width: 100%;
     text-align: center;
 }
-/*#side-panel {
-    font-family: 'TypeMachine', Arial, Helvetica, sans-serif;
-    font-size: 12px;
-    margin-top: 4px;
-    background: rgba(255,255,255,0.85);
-    border: 1.5px solid #4caf50;
-    border-radius: 8px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-    padding: 0px;
-    font-size: 0.85em;
-    color: #222;
-    text-align: center;
-    width: 200px;
-    align-self: center;
-    /*margin-left: 0;
-    margin-right: 0;
-}*/
